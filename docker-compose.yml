@@ -1,19 +1,35 @@
+# Menggunakan Docker Compose Versi 2
 version: "2"
 
 services:
+  # Service untuk aplikasi
   item-app:
+    # Image aplikasi item-app
     image: goldenbird29/item-app:v1
+
+    # Port mapping
     ports:
       - "80:8080"
+
+    # Memastikan container item-db dijalankan lebih dulu
     depends_on:
       - item-db
+
+      # Container otomatis restart jika berhenti atau crash
     restart: always
 
+# Service untuk database MongoDb
   item-db:
+    # Menggunakan image MongoDB versi 3
     image: mongo:3
+
+    # Volume untuk menyimpan data databse secara persistent
     volumes:
       - app-db:/data/db
+
+    # Restart policy agar database tetap berjalan
     restart: always
 
+# Volume bernama app-db yang digunakan oleh service item-db
 volumes:
   app-db:

@@ -4,6 +4,7 @@ docker build -t item-app:v1 .
 # Lihat image lokal
 docker images
 
+# Tag image ke Docker Hub
 docker tag item-app:v1 goldenbird29/item-app:v1
 
 # Login ke Docker Hub (pakai env variable)
